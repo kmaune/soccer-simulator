@@ -18,6 +18,7 @@ public:
 
 	// Add feature to team where you can input a formation if desired
 	//Default formation 4-3-3
+	Team();
 	Team(int team_id);
 	int team;
 	Goalkeeper gk;

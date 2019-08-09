@@ -15,17 +15,21 @@ Game::Game(){
 void Game::init(){
 
 	//Create the Field
-	field = new Field;
+	field = new Field();
 
 	//Create Team 1
-	//team_1 = new Team();
+	team_1 = new Team(1);
+
+	//cout << team_1->players.size() << endl;
 
 	//Create Team 2
 	//team_2 = new Team();
 
 }
 
-
+Team* Game::get_team_1(){
+	return team_1;
+}
 /*
 void Game::play(){
 	int iterations = 0; 

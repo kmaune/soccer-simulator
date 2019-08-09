@@ -10,6 +10,7 @@ Field::Field(){
 
 void Field::init(){
 
+	field_map = new map<int, field_grid>;
 	// Create all structs of field space 
 	field_grid fg;
 	//Create wings
@@ -24,7 +25,6 @@ void Field::init(){
 			(*field_map)[fg.id] = fg;
 		}
 	}
-
 }
 
 
