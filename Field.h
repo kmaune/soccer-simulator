@@ -1,8 +1,12 @@
 #ifndef FIELD_H
 #define FIELD_H
 
-#include <vector>
 #include <string>
+#include <deque>
+#include <iostream>
+#include <cstdlib>
+#include <map>
+//#include "Player.h"
 
 using namespace std; 
 
@@ -13,6 +17,7 @@ struct field_grid {
 	int x = -1;
 	int y = -1;
 	double attacking_threat = 0.0;
+	//deque<Player> in_grid *** Use this to keep track of which players are in the grid
 };
 
 class Field{
