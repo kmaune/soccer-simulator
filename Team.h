@@ -8,6 +8,8 @@
 #include "Player.h"
 #include "Goalkeeper.h"
 #include "Defender.h"
+#include "Midfielder.h"
+#include "Forward.h"
 
 using namespace std;
 

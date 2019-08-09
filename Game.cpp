@@ -19,11 +19,11 @@ void Game::init(){
 
 	//Create Team 1
 	team_1 = new Team(1);
-
 	//cout << team_1->players.size() << endl;
 
 	//Create Team 2
-	//team_2 = new Team();
+	team_2 = new Team(2);
+	//cout << team_2->players.size() << endl;
 
 }
 

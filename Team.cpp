@@ -26,20 +26,17 @@ Team::Team(int team_id){
 	
 	//Create 3 midfielders
 
-	/* 
-		for(int i = 0; i < 3; i++){
-			
-			player_id++;
-		}
-	*/
+
+	for(int i = 0; i < 3; i++){
+		players.push_back(shared_ptr<Player>(new Midfielder(player_id, team_id)));
+		player_id++;
+	}
 
 	//Create 3 forwards
-	/*
-		for(int i = 0; i < 3; i++){
-			players.push_back(shared_ptr<Player>(new Forward(player_id, team_id)));
-			player_id++;
-		}
-	*/
-
+	
+	for(int i = 0; i < 3; i++){
+		players.push_back(shared_ptr<Player>(new Forward(player_id, team_id)));
+		player_id++;
+	}
 
 }

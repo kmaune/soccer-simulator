@@ -26,7 +26,7 @@ private:
 	Field *field;
 	
 	Team *team_1;
-	//Team *team_2;
+	Team *team_2;
 
 	int team_possession = 0;
 	int player_possession = 0;
