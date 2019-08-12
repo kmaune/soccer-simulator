@@ -10,10 +10,10 @@ Goalkeeper::Goalkeeper(){
 	goalkeeping = -1;
 }
 
-Goalkeeper::Goalkeeper(int team_id) {
+Goalkeeper::Goalkeeper(int player_id, int team_id) {
 	x = 2;
 	y = 0;
-	id = 0;
+	id = player_id;
 	team = team_id;
 	goalkeeping = rand()%50 + 50;
 }

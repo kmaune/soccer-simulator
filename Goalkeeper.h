@@ -8,7 +8,7 @@ class Goalkeeper {
 public:
 
 	Goalkeeper();
-	Goalkeeper(int team_id);
+	Goalkeeper(int player_id, int team_id);
 	int x;
 	int y;
 	int id;
