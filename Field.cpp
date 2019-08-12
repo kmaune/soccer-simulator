@@ -78,5 +78,7 @@ void Field::set_threat_value(field_grid &fg){
 }
 
 
-
+Field::~Field(){
+	delete field_map;
+}
 

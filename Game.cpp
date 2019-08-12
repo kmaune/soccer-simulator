@@ -18,17 +18,24 @@ void Game::init(){
 	field = new Field();
 
 	//Create Team 1
-	team_1 = new Team(1);
+	team_1 = new Team(1, field->field_map);
 	//cout << team_1->players.size() << endl;
 
 	//Create Team 2
-	team_2 = new Team(2);
+	team_2 = new Team(2, field->field_map);
 	//cout << team_2->players.size() << endl;
 
 }
 
 Team* Game::get_team_1(){
 	return team_1;
+}
+
+
+Game::~Game(){
+	delete field;
+	delete team_1;
+	delete team_2;
 }
 /*
 void Game::play(){

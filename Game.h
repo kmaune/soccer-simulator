@@ -22,6 +22,8 @@ public:
 	//void play();
 	//void take_actions();
 
+	~Game();
+
 private:
 	Field *field;
 	
