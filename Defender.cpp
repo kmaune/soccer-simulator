@@ -57,7 +57,6 @@ int Defender::discretize_position(){
 }
 
 void Defender::take_off_ball_action(){
-	cout << "Off ball action" << endl;
 	//Need to remove player from original field grid, 
 	// then add player back to whatver field grid they end up in
 
@@ -65,7 +64,6 @@ void Defender::take_off_ball_action(){
 	int i = rand()%2;
 	string action = off_ball_actions[i];
 
-	cout << "Action is: " << action << endl;
 
 	//If action is move, move the player
 	if(action == "move")
@@ -75,13 +73,11 @@ void Defender::take_off_ball_action(){
 	int pos = discretize_position();
 	field_grid fg = (*field_map)[pos];
 
-	cout << "Off ball action done" << endl;
 
 }
 
 void Defender::move_player(){
 	//Get movement direction
-	cout << "Moving" << endl;
 	int start_pos = (*player_positions)[id];
 
 	int i = rand()%4;
@@ -123,13 +119,9 @@ void Defender::move_player(){
 }
 
 int Defender::take_on_ball_action(){
-	cout << "Taking on ball action" << endl;
 	// Get random action from on_ball_action array
 	int i = rand()%3;
 	string action = on_ball_actions[i];
-
-
-	cout << "Action is " << action << endl;
 
 	//If random action is shoot:
 	if(action == "shoot")
@@ -148,8 +140,8 @@ int Defender::take_on_ball_action(){
 
 
 int Defender::shoot(){
-	cout << "shooting" << endl;
-//take shot on other players goalie
+
+	//take shot on other players goalie
 	if(team == 0){
 		if(x < 4){
 			//turnover
@@ -158,12 +150,12 @@ int Defender::shoot(){
 		}
 
 		else if(x == 4){
-			cout << "midfield space" << endl;
+			//cout << "midfield space" << endl;
 			return -1;
 		}
 
 		else if (x == 5){
-			cout << "penalty space" << endl;
+			//cout << "penalty space" << endl;
 			return 22;
 		}
 
@@ -176,31 +168,10 @@ int Defender::shoot(){
 		}
 	}
 
-
 	return 22;
-	/* 
-		If you are not in the opponents penalty area or closest 
-		half-space/midfield area--> turnover
-
-
-		If you are in the closest midfield are or halfspace
-		--> no shot multiplier, small GK mutliplier
-
-		If you are in the penalty area --> small shot multiplier, 
-		no GK multiplier
-	
-		If there is a goal, give other team possession and update score
-
-		If there is a save, other teams goalie has possession
-		
-		( Maybe incorporate blocks? )
-		****NEED to account for shots from wings --> turnover
-
-	*/
 }
 
 int Defender::pass(){
-	cout << "Passing" << endl;
 	int teammate = rand()%10;
 	if(team == 1){
 		teammate += 1; 
@@ -259,25 +230,10 @@ int Defender::pass(){
 
 	return teammate;
 
-	/*
-	Select @ random a teamate to pass too
-	
-	If # of opponents in Grid with teammate > 1 --> turnover
-	(Maybe just increase the likelihood of a turnover)
-	If # of opponents in Grid with teamate == 1, 
-	--> Random choice based on passing ability of passer 
-	and defensive ability of defender for success or turnover
-
-	If number of opponents in Grid with teamate == 0, 
-	--> succesful pass
-
-*/
-
 }
 
 
 int Defender::dribble(){
-	cout << "Dribbling" << endl;
 	int start_pos = (*player_positions)[id];
 	//(*field_map)[start_pos].in_grid
 	field_grid current_grid = (*field_map)[start_pos];
@@ -306,17 +262,7 @@ int Defender::dribble(){
 	}
 
 	move_player();
-	cout << "Done moving --dribble " << endl;
 	return id;
-
-
-/*
-	if 0 defneders in grid with you --> success
-
-	if > 0 defender in grid with you --> random choice 
-	for each defender in grid based on dribbling ability
-	vs defensive ability
-*/
 
 }
 
