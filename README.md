@@ -2,7 +2,7 @@
 
 Project to simulate a soccer game in C++
 
-##Compiling & Running
+## Compiling & Running
 
 To compile, after downloading or cloning the repository, run:
 
@@ -13,7 +13,7 @@ Then, to run:
 	./soccer
 
 
-##Overview
+## Overview
 
 This project simulates a soccer game between two teams. The game is played between two teams with the game ending when one team scores 3 goals or when time runs out. 
 
@@ -29,7 +29,7 @@ The first player to make a move is the player on the ball. Then every remaining 
 After a goal, the opposing team is given possession and the game is continued.
 
 
-##Planned Future Improvements 
+## Planned Future Improvements 
 
 	- Usage of attributes/skills by position to determine success of passes/shots/dribbles.
 	- Better incorporation of Goalkeeper for each team
