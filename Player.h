@@ -31,19 +31,7 @@ public:
 	string off_ball_actions[2] = {"stay", "move"};
 	string moves[4] = {"North", "South", "East", "West"};
 
-	int take_on_ball_action();
-	void take_off_ball_action();
-
 	virtual ~Player();
-	/*
-	void set_defensive(double value);
-	void set_pace(double value);
-	void set_shooting(double value);
-	void set_passing(double value);
-	void set_dribbling(double value);
-	void take_on_ball_action();
-	void take_off_ball_action();
-	*/
 };
 
 
