@@ -35,8 +35,6 @@ public:
 	void take_off_ball_action();
 
 	virtual ~Player();
-
-
 	/*
 	void set_defensive(double value);
 	void set_pace(double value);
