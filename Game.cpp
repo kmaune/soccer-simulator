@@ -70,17 +70,24 @@ void Game::take_actions(){
 	//Get Player on ball
 	if(team_possession == 0){
 
-		if(player_possession-1 < 7){
+		if(player_possession-1 < 4){
 			shared_ptr<Defender> d = dynamic_pointer_cast<Defender,Player>(team_1->players[player_possession-1]);
 			cout << "possession" <<  player_possession << endl;
 			ret = d->take_on_ball_action();
 		}
 
-		else{
+		else if(player_possession -1 < 7){
 			shared_ptr<Midfielder> m = dynamic_pointer_cast<Midfielder, Player>(team_1->players[player_possession-1]);
 			cout << "possession" <<  player_possession << endl;
 			ret = m->take_on_ball_action();
 		}
+
+		else{
+			shared_ptr<Forward> f = dynamic_pointer_cast<Forward, Player>(team_1->players[player_possession-1]);
+			cout << "possession" <<  player_possession << endl;
+			ret = f->take_on_ball_action();
+		}
+
 		
 		cout << "took on ball action -- 1" << endl;
 		cout << "return value" << ret << endl;
@@ -105,21 +112,26 @@ void Game::take_actions(){
 		//Move Rest of Team and opponents
 		for(int i = 1; i < 10; i++){
 			if(i == player_possession-1){
-				if(i < 7){
+				if(i < 4){
 					shared_ptr<Defender> d = dynamic_pointer_cast<Defender,Player>(team_2->players[i]);
 					d->take_off_ball_action();
 				}
 
-				else{
+				else if(i < 7){
 					shared_ptr<Midfielder> m = dynamic_pointer_cast<Midfielder,Player>(team_2->players[i]);
 					m->take_off_ball_action();
+				}
+
+				else{
+					shared_ptr<Forward> f = dynamic_pointer_cast<Forward,Player>(team_2->players[i]);
+					f->take_off_ball_action();
 				}
 				
 				cout << "took off ball action 2 -- a" << endl;
 			}
 				
 			else{
-				if(i < 7){
+				if(i < 4){
 					shared_ptr<Defender> d = dynamic_pointer_cast<Defender,Player>(team_1->players[i]);
 					d->take_off_ball_action();
 					cout << "took off ball action 1 -- a" << endl;
@@ -128,12 +140,21 @@ void Game::take_actions(){
 					cout << "took off ball action 2 --b "<< endl;
 				}
 
-				else{
+				else if(i < 7){
 					shared_ptr<Midfielder> m = dynamic_pointer_cast<Midfielder,Player>(team_1->players[i]);
 					m->take_off_ball_action();
 					cout << "took off ball action 1 -- a" << endl;
 					m = dynamic_pointer_cast<Midfielder,Player>(team_2->players[i]);
 					m->take_off_ball_action();
+					cout << "took off ball action 2 --b "<< endl;
+				}
+
+				else{
+					shared_ptr<Forward> f = dynamic_pointer_cast<Forward,Player>(team_1->players[i]);
+					f->take_off_ball_action();
+					cout << "took off ball action 1 -- a" << endl;
+					f = dynamic_pointer_cast<Forward,Player>(team_2->players[i]);
+					f->take_off_ball_action();
 					cout << "took off ball action 2 --b "<< endl;
 				}
 				
@@ -144,16 +165,22 @@ void Game::take_actions(){
 	}
 
 	else{
-		if(player_possession-12 < 7){
+		if(player_possession-12 < 4){
 			shared_ptr<Defender> d = dynamic_pointer_cast<Defender,Player>(team_1->players[player_possession-12]);
 			cout << "possession" <<  player_possession << endl;
 			ret = d->take_on_ball_action();
 		}
 
-		else{
+		else if(player_possession-12 < 7){
 			shared_ptr<Midfielder> m = dynamic_pointer_cast<Midfielder,Player>(team_1->players[player_possession-12]);
 			cout << "possession" <<  player_possession << endl;
 			ret = m->take_on_ball_action();
+		}
+
+		else{
+			shared_ptr<Forward> f = dynamic_pointer_cast<Forward,Player>(team_1->players[player_possession-12]);
+			cout << "possession" <<  player_possession << endl;
+			ret = f->take_on_ball_action();
 		}
 
 		cout << "took on ball action -- 2" << endl;
@@ -175,21 +202,26 @@ void Game::take_actions(){
 
 		for(int i =0; i < 10; i++){
 			if(i == player_possession-12){
-				if(i < 7){
+				if(i < 4){
 					shared_ptr<Defender> d = dynamic_pointer_cast<Defender,Player>(team_1->players[i]);
 					d->take_off_ball_action();
 				}
 
-				else{
+				else if(i < 7){
 					shared_ptr<Midfielder> m = dynamic_pointer_cast<Midfielder,Player>(team_1->players[i]);
 					m->take_off_ball_action();
+				}
+
+				else{
+					shared_ptr<Forward> f = dynamic_pointer_cast<Forward,Player>(team_1->players[i]);
+					f->take_off_ball_action();
 				}
 				
 				cout << "took off ball action 1 -- b" << endl;
 			}
 				
 			else{
-				if(i < 7){
+				if(i < 4){
 					shared_ptr<Defender> d = dynamic_pointer_cast<Defender,Player>(team_2->players[i]);
 					d->take_off_ball_action();
 					cout << "Took off ball action 2 -- c" << endl;
@@ -198,12 +230,21 @@ void Game::take_actions(){
 					cout << "took off ball action 1 -- c" << endl;
 				}
 
-				else{
+				else if(i < 7){
 					shared_ptr<Midfielder> m = dynamic_pointer_cast<Midfielder,Player>(team_2->players[i]);
 					m->take_off_ball_action();
 					cout << "Took off ball action 2 -- c" << endl;
 					m = dynamic_pointer_cast<Midfielder,Player>(team_1->players[i]);
 					m->take_off_ball_action();
+					cout << "took off ball action 1 -- c" << endl;
+				}
+
+				else{
+					shared_ptr<Forward> f = dynamic_pointer_cast<Forward,Player>(team_2->players[i]);
+					f->take_off_ball_action();
+					cout << "Took off ball action 2 -- c" << endl;
+					f = dynamic_pointer_cast<Forward,Player>(team_1->players[i]);
+					f->take_off_ball_action();
 					cout << "took off ball action 1 -- c" << endl;
 				}
 
