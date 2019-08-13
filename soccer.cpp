@@ -15,7 +15,6 @@ int main(int argc, char*argv[]){
 	cout << "Here" << endl;
 	g.play();
 	
-
 	return 0;
 
 }

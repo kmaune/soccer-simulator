@@ -17,17 +17,3 @@ Goalkeeper::Goalkeeper(int player_id, int team_id) {
 	team = team_id;
 	goalkeeping = rand()%50 + 50;
 }
-
-int Goalkeeper::take_on_ball_action(){
-	//Goalkeeper will always pass and will always complete pass
-	int teammate = rand()%10;
-	if(team == 1){
-		teammate += 1; 
-	}
-
-	else if(team == 2){
-		teammate += 12;
-	}
-
-	return teammate;
-}
