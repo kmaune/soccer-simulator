@@ -11,6 +11,7 @@ Field::Field(){
 void Field::init(){
 
 	field_map = new map<int, field_grid>;
+	player_positions = new map<int, int>;
 	// Create all structs of field space 
 	field_grid fg;
 	//Create wings
@@ -80,5 +81,6 @@ void Field::set_threat_value(field_grid &fg){
 
 Field::~Field(){
 	delete field_map;
+	delete player_positions;
 }
 

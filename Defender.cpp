@@ -1,4 +1,5 @@
 #include "Defender.h"
+#include <algorithm>    // std::find
 
 using namespace std;
 
@@ -14,7 +15,7 @@ Defender::Defender(){
 	dribbling = -1;
 }
 
-Defender::Defender(int player_id, int team_id, map<int, field_grid> *fm){
+Defender::Defender(int player_id, int team_id, map<int, field_grid> *fm, map<int, int> *player_pos){
 	x = rand()%5;
 	y = 1;
 	id = player_id;
@@ -27,11 +28,13 @@ Defender::Defender(int player_id, int team_id, map<int, field_grid> *fm){
 	dribbling = rand()%50 + 40;
 
 	field_map = fm;
+	player_positions = player_pos;
 	(*field_map)[discretize_position()].in_grid.push_back(id);
+	(*player_positions)[id] = discretize_position();
 }
 
 
-Defender::Defender(int player_id, int team_id, int x_pos, int y_pos, map<int, field_grid> *fm){
+Defender::Defender(int player_id, int team_id, int x_pos, int y_pos, map<int, field_grid> *fm, map<int, int> *player_pos){
 	x = x_pos;
 	y = y_pos;
 	id = player_id;
@@ -44,6 +47,9 @@ Defender::Defender(int player_id, int team_id, int x_pos, int y_pos, map<int, fi
 	dribbling = rand()%50 + 40;
 
 	field_map = fm;
+	player_positions = player_pos;
+	(*field_map)[discretize_position()].in_grid.push_back(id);
+	(*player_positions)[id] = discretize_position();
 }
 
 int Defender::discretize_position(){
@@ -51,9 +57,15 @@ int Defender::discretize_position(){
 }
 
 void Defender::take_off_ball_action(){
+	cout << "Off ball action" << endl;
+	//Need to remove player from original field grid, 
+	// then add player back to whatver field grid they end up in
+
 	// Get random action from on_ball_action array
 	int i = rand()%2;
 	string action = off_ball_actions[i];
+
+	cout << "Action is: " << action << endl;
 
 	//If action is move, move the player
 	if(action == "move")
@@ -63,10 +75,15 @@ void Defender::take_off_ball_action(){
 	int pos = discretize_position();
 	field_grid fg = (*field_map)[pos];
 
+	cout << "Off ball action done" << endl;
+
 }
 
 void Defender::move_player(){
 	//Get movement direction
+	cout << "Moving" << endl;
+	int start_pos = (*player_positions)[id];
+
 	int i = rand()%4;
 	string direction = moves[i];
 	if(direction == "North"){
@@ -89,45 +106,65 @@ void Defender::move_player(){
 			x--;
 		}
 	}
+
+	int new_pos = discretize_position();
+
+	if(new_pos != start_pos){
+		//Remove player from original grid
+		deque<int>::iterator it = find((*field_map)[start_pos].in_grid.begin(), (*field_map)[start_pos].in_grid.end(), id);
+		if(it != (*field_map)[start_pos].in_grid.end())
+			(*field_map)[start_pos].in_grid.erase(it);
+
+		//Put player in new grid
+		(*field_map)[new_pos].in_grid.push_back(id);
+		(*player_positions)[id] = new_pos;
+	}
+
 }
 
-void Defender::take_on_ball_action(){
-	return;
+int Defender::take_on_ball_action(){
+	cout << "Taking on ball action" << endl;
 	// Get random action from on_ball_action array
 	int i = rand()%3;
 	string action = on_ball_actions[i];
 
 
+	cout << "Action is " << action << endl;
+
 	//If random action is shoot:
 	if(action == "shoot")
-		shoot();	
+		return shoot();	
 
 	//Else If random action is pass:
 	else if(action == "pass")
-		pass();
+		return pass();
 
 	//Else If random action is dribble:
 	else if(action == "dribble")
-		dribble();
+		return dribble();
+
+	return -1;
 }
 
 
-//Return 1 for goal, negative 0 for turnover (Other teams goalie gets possession)
-void Defender::shoot(){
+int Defender::shoot(){
+	cout << "shooting" << endl;
 //take shot on other players goalie
-
 	if(team == 0){
 		if(x < 4){
 			//turnover
-			cout << "turnover, team 1" << endl;
+			return -1;
+
 		}
 
 		else if(x == 4){
 			cout << "midfield space" << endl;
+			return -1;
 		}
 
 		else if (x == 5){
 			cout << "penalty space" << endl;
+			return 22;
 		}
 
 	}
@@ -135,11 +172,12 @@ void Defender::shoot(){
 	else if(team == 1){
 		if(x > 4){
 			//turnover
-			cout << "turnover, team 2" << endl;
+			return -1;
 		}
 	}
 
 
+	return 22;
 	/* 
 		If you are not in the opponents penalty area or closest 
 		half-space/midfield area--> turnover
@@ -161,8 +199,66 @@ void Defender::shoot(){
 	*/
 }
 
-//Return 0-10 for successful pass, -1 - -10 or 11 for turnover
-void Defender::pass(){
+int Defender::pass(){
+	cout << "Passing" << endl;
+	int teammate = rand()%10;
+	if(team == 1){
+		teammate += 1; 
+	}
+
+	else if(team == 2){
+		teammate += 12;
+	}
+
+	int num_opponents = 0;
+	int last_opponent = -1;
+	int teammate_pos = (*player_positions)[teammate];
+
+	field_grid teammate_grid = (*field_map)[teammate_pos];
+
+	//If teammate is only player in grid
+	if(teammate_grid.in_grid.size() == 1){
+		return teammate;
+	}
+
+	else {
+
+		for(int i = 0; i < teammate_grid.in_grid.size(); i++){
+			int player_id = teammate_grid.in_grid[i];
+			if(team == 1){
+				if(player_id > 10){
+					num_opponents++;
+					last_opponent = player_id;
+				}
+			}
+
+			else if(team == 2){
+				if(player_id < 11){
+					num_opponents++;
+					last_opponent = player_id;
+				}
+			}
+		}
+
+		if(num_opponents == 1){
+			int success = rand()%2;
+			if(success){
+				return teammate;
+			}
+
+			else {
+				return last_opponent;
+			}
+		}
+
+		else if(num_opponents > 1){
+			return last_opponent;
+		}
+
+	}
+
+	return teammate;
+
 	/*
 	Select @ random a teamate to pass too
 	
@@ -179,8 +275,41 @@ void Defender::pass(){
 
 }
 
-//Return 1 on success -1- -10 or 11 for turnover
-void Defender::dribble(){
+
+int Defender::dribble(){
+	cout << "Dribbling" << endl;
+	int start_pos = (*player_positions)[id];
+	//(*field_map)[start_pos].in_grid
+	field_grid current_grid = (*field_map)[start_pos];
+
+	for(int i = 0; i < current_grid.in_grid.size(); i++){
+		int player_id = current_grid.in_grid[i];
+		if(team == 1){
+			if(player_id > 10){
+				int success = rand()%2;
+				if(success)
+					continue;
+				else
+					return player_id;
+			}
+		}
+
+		else if(team == 2){
+			if(player_id < 11){
+				int success = rand()%2;
+				if(success)
+					continue;
+				else
+					return player_id;
+			}
+		}
+	}
+
+	move_player();
+	cout << "Done moving --dribble " << endl;
+	return id;
+
+
 /*
 	if 0 defneders in grid with you --> success
 

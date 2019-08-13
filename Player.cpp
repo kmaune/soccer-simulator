@@ -17,4 +17,16 @@ Player::Player(){
 }
 
 
+int Player::take_on_ball_action(){
+	cout << "Generic player on ball action, shouldn't be here" << endl;
+	return -1;
+}
 
+void Player::take_off_ball_action(){
+	cout << "Generic player off ball action, shouldn't be here" << endl;
+	return;
+}
+
+Player::~Player(){
+	
+}

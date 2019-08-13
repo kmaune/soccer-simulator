@@ -9,7 +9,8 @@ using namespace std;
 int main(int argc, char*argv[]){
 
 	Game g;
-	//g.play()
+	cout << "Here" << endl;
+	g.play();
 	
 
 	return 0;

@@ -13,6 +13,7 @@ public:
 	int y;
 	int id;
 	int team;
+	int take_on_ball_action();
 
 private:
 	double goalkeeping; 

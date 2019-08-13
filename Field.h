@@ -19,6 +19,9 @@ struct field_grid {
 	int x = -1;
 	int y = -1;
 	double attacking_threat = 0.0;
+	//Probably need to update this to a map
+	//map from player_id to grid position
+	//this will make removing a player easier and can still get size
 	deque<int> in_grid;
 };
 
@@ -27,6 +30,7 @@ public:
 	Field();
 	void init();
 	map<int, field_grid> *field_map;
+	map<int, int> *player_positions;
 
 	~Field();
 

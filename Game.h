@@ -19,8 +19,8 @@ public:
 	Game();
 	void init();
 	Team* get_team_1();
-	//void play();
-	//void take_actions();
+	void play();
+	void take_actions();
 
 	~Game();
 
@@ -31,7 +31,7 @@ private:
 	Team *team_2;
 
 	int team_possession = 0;
-	int player_possession = 0;
+	int player_possession = 1;
 
 
 
