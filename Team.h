@@ -32,6 +32,7 @@ public:
 
 
 	//Need Destructor still	
+	~Team();
 };
 
 

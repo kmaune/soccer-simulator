@@ -51,3 +51,11 @@ Team::Team(int team_id, map<int, field_grid> *fm, map<int, int> *player_pos){
 
 
 }
+
+Team::~Team(){
+	while(players.size() > 0){
+		shared_ptr<Player> p = players.back();
+		p.reset();
+		players.pop_back();
+	}
+}
