@@ -27,14 +27,11 @@ Team::Team(int team_id, map<int, field_grid> *fm, map<int, int> *player_pos){
 
 	//Create GK
 	gk = Goalkeeper(gk_id, team_id);
-	//cout << "Goalie created" << endl;
 
 
 	//Create 4 defenders
-	//Temporarily making team full of defenders
 	for(int i = 0; i < 4; i++){
 		players.push_back(shared_ptr<Player>(new Defender(player_id, team_id, field_map, player_pos)));
-		//cout << "Player " << player_id << " created " << endl;
 		player_id++;
 	}
 	
@@ -47,7 +44,6 @@ Team::Team(int team_id, map<int, field_grid> *fm, map<int, int> *player_pos){
 	
 
 	//Create 3 forwards
-	
 	for(int i = 0; i < 3; i++){
 		players.push_back(shared_ptr<Player>(new Forward(player_id, team_id, field_map, player_pos)));
 		player_id++;
