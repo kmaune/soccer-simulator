@@ -20,7 +20,6 @@ public:
 
 	Player();
 	
-
 	virtual ~Player();
 
 protected:
