@@ -19,6 +19,11 @@ class Player {
 public:
 
 	Player();
+	
+
+	virtual ~Player();
+
+protected:
 	int x;
 	int y;
 	int id;
@@ -32,7 +37,6 @@ public:
 	string off_ball_actions[2] = {"stay", "move"};
 	string moves[4] = {"North", "South", "East", "West"};
 
-	virtual ~Player();
 };
 
 
