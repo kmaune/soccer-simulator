@@ -52,6 +52,15 @@ Team::Team(int team_id, map<int, field_grid> *fm, map<int, int> *player_pos){
 
 }
 
+
+int Team::get_goals_scored(){
+	return goals;
+}
+
+void Team::add_goal_scored(){
+	goals++;
+}
+
 Team::~Team(){
 	while(players.size() > 0){
 		shared_ptr<Player> p = players.back();

@@ -23,14 +23,15 @@ public:
 	
 	Goalkeeper gk;
 	vector<shared_ptr<Player>> players; //All field players in the team
-	int goals = 0; // Keeps track of how many goals the team scored
-
 	
+	int get_goals_scored();
+	void add_goal_scored();
 
 	~Team();
 	
 private:
 	int team;
+	int goals = 0; // Keeps track of how many goals the team scored
 
 	map<int, field_grid> *field_map;
 	map<int, int> *player_positions;

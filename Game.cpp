@@ -39,18 +39,18 @@ Game::~Game(){
 void Game::play(){
 	cout << "Playing" << endl;
 	int iterations = 0; 
-	while( (team_1->goals != 3 && team_2->goals != 3) || iterations > 10000){
+	while( (team_1->get_goals_scored() != 3 && team_2->get_goals_scored() != 3) || iterations > 10000){
 		iterations++;
 		take_actions();
 	}
 
 	cout << "FINAL SCORE" << endl;
-	cout << "Team 1 " << team_1->goals << " : " << team_2->goals << " Team 2" << endl;
+	cout << "Team 1 " << team_1->get_goals_scored() << " : " << team_2->get_goals_scored() << " Team 2" << endl;
 
-	if(team_1->goals == team_2->goals)
+	if(team_1->get_goals_scored() == team_2->get_goals_scored())
 		cout << "Match is a draw!" << endl;
 
-	else if(team_1->goals > team_2->goals)
+	else if(team_1->get_goals_scored() > team_2->get_goals_scored())
 		cout << "Team 1 wins!" << endl;
 
 	else
@@ -84,7 +84,7 @@ void Game::take_actions(){
 		//If a goal
 		if(ret == 22){
 			cout << "Goal Team 1!" << endl;
-			team_1->goals++;
+			team_1->add_goal_scored();
 			team_possession = 1;
 			player_possession = 12;
 			return;
@@ -166,7 +166,7 @@ void Game::take_actions(){
 
 		if(ret == 22){
 			cout << "Goal Team 2!" << endl;
-			team_2->goals++;
+			team_2->add_goal_scored();
 			team_possession = 0;
 			player_possession = 1;
 			return;
