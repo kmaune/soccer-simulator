@@ -6,7 +6,9 @@ Project to simulate a soccer game in C++
 
 To compile, after downloading or cloning the repository, run:
 
-	g++ -std=c++11 -Werror Field.cpp Game.cpp soccer.cpp Player.cpp Team.cpp Goalkeeper.cpp Defender.cpp Midfielder.cpp Forward.cpp -o soccer 
+	g++ -std=c++17 -Werror Field.cpp Game.cpp soccer.cpp Player.cpp Team.cpp Goalkeeper.cpp Defender.cpp Midfielder.cpp Forward.cpp -o soccer 
+
+**Note:** The code can also be compiled using C++11 or C++14
 
 Then, to run:
 
