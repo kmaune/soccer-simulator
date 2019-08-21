@@ -1,7 +1,3 @@
-#include <iostream>
-#include <cstdlib>
-#include <string>
-#include <vector>
 #include "Game.h"
 
 using namespace std;
@@ -25,8 +21,12 @@ void Game::init(){
 
 }
 
-Team* Game::get_team_1(){
-	return team_1;
+Team Game::get_team_1(){
+	return *team_1;
+}
+
+Team Game::get_team_2(){
+	return *team_2;
 }
 
 

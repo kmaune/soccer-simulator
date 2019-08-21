@@ -1,5 +1,5 @@
 #include "Defender.h"
-#include <algorithm>    // std::find
+
 
 using namespace std;
 

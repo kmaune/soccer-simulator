@@ -5,7 +5,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include "Player.h"
 #include "Goalkeeper.h"
 #include "Defender.h"
 #include "Midfielder.h"
@@ -17,12 +16,11 @@ using namespace std;
 class Team {
 
 public:
-
 	// Add feature to team where you can input a formation if desired
 	//Default formation 4-3-3
 	Team();
 	Team(int team_id, map<int, field_grid> *fm, map<int, int> *player_pos);
-	int team;
+
 	Goalkeeper gk;
 	vector<shared_ptr<Player>> players; //All field players in the team
 	int goals = 0; // Keeps track of how many goals the team scored
@@ -30,9 +28,12 @@ public:
 	map<int, field_grid> *field_map;
 	map<int, int> *player_positions;
 
-
-	//Need Destructor still	
 	~Team();
+	c
+private:
+	int team;
+
+
 };
 
 

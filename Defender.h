@@ -16,6 +16,7 @@ public:
 	int take_on_ball_action();
 
 private:
+	
 	int discretize_position();
 	void move_player();
 	int shoot();

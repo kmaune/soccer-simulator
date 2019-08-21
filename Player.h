@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <algorithm>    // std::find
 #include "Field.h"
 
 using namespace std;

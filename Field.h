@@ -22,7 +22,7 @@ struct field_grid {
 	//Probably need to update this to a map
 	//map from player_id to grid position
 	//this will make removing a player easier and can still get size
-	deque<int> in_grid;
+	deque<int> in_grid; 
 };
 
 class Field{

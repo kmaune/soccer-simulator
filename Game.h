@@ -2,11 +2,12 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <string>
+#include <iostream>
+#include <cstdlib>
 #include <vector>
+#include <string>
 #include <map>
 #include "Field.h"
-#include "Player.h"
 #include "Team.h"
 
 using namespace std;
@@ -18,9 +19,11 @@ public:
 
 	Game();
 	void init();
-	Team* get_team_1();
 	void play();
 	void take_actions();
+
+	Team get_team_1();
+	Team get_team_2();
 
 	~Game();
 
