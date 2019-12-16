@@ -39,7 +39,7 @@ Game::~Game(){
 void Game::play(){
 	cout << "Playing" << endl;
 	int iterations = 0; 
-	while( (team_1->get_goals_scored() != 3 && team_2->get_goals_scored() != 3) || iterations > 10000){
+	while( (team_1->get_goals_scored() != 3 && team_2->get_goals_scored() != 3) && iterations < 10000){
 		iterations++;
 		take_actions();
 	}

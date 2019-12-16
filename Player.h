@@ -35,7 +35,6 @@ protected:
 	string on_ball_actions[3] = {"pass", "dribble", "shoot"};
 	string off_ball_actions[2] = {"stay", "move"};
 	string moves[4] = {"North", "South", "East", "West"};
-
 };
 
 

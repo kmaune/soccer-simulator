@@ -24,7 +24,7 @@ public:
 	Goalkeeper gk;
 	vector<shared_ptr<Player>> players; //All field players in the team
 	
-	int get_goals_scored();
+	int get_goals_scored() const;
 	void add_goal_scored();
 
 	~Team();

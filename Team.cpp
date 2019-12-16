@@ -53,7 +53,7 @@ Team::Team(int team_id, map<int, field_grid> *fm, map<int, int> *player_pos){
 }
 
 
-int Team::get_goals_scored(){
+int Team::get_goals_scored() const {
 	return goals;
 }
 
