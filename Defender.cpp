@@ -139,7 +139,7 @@ int Defender::take_on_ball_action(){
 }
 
 
-int Defender::shoot(){
+int Defender::shoot() const{
 
 	//take shot on other players goalie
 	if(team == 0){
@@ -171,7 +171,7 @@ int Defender::shoot(){
 	return 22;
 }
 
-int Defender::pass(){
+int Defender::pass() const{
 	int teammate = rand()%10;
 	if(team == 1){
 		teammate += 1; 

@@ -19,8 +19,8 @@ private:
 	
 	int discretize_position();
 	void move_player();
-	int shoot();
-	int pass();
+	int shoot() const;
+	int pass() const;
 	int dribble();
 	map<int, field_grid> *field_map;
 	map<int, int> *player_positions;

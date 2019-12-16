@@ -32,9 +32,9 @@ protected:
 	double shooting;
 	double passing;
 	double dribbling;
-	string on_ball_actions[3] = {"pass", "dribble", "shoot"};
-	string off_ball_actions[2] = {"stay", "move"};
-	string moves[4] = {"North", "South", "East", "West"};
+	const string on_ball_actions[3] = {"pass", "dribble", "shoot"};
+	const string off_ball_actions[2] = {"stay", "move"};
+	const string moves[4] = {"North", "South", "East", "West"};
 };
 
 

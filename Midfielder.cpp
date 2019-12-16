@@ -141,7 +141,7 @@ int Midfielder::take_on_ball_action(){
 }
 
 
-int Midfielder::shoot(){
+int Midfielder::shoot() const{
 	//take shot on other players goalie
 	if(team == 0){
 		if(x < 4){
@@ -173,7 +173,7 @@ int Midfielder::shoot(){
 
 
 
-int Midfielder::pass(){
+int Midfielder::pass() const{
 	int teammate = rand()%10;
 	if(team == 1){
 		teammate += 1; 

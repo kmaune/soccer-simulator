@@ -144,7 +144,7 @@ int Forward::take_on_ball_action(){
 }
 
 
-int Forward::shoot(){
+int Forward::shoot() const{
 	//take shot on other players goalie
 	if(team == 0){
 		if(x < 4){
@@ -174,7 +174,7 @@ int Forward::shoot(){
 	return 22;
 }
 
-int Forward::pass(){
+int Forward::pass() const{
 	int teammate = rand()%10;
 	if(team == 1){
 		teammate += 1; 
